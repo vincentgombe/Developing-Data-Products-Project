@@ -1,0 +1,89 @@
+---
+title: "Handy Poisson Probability Calculator"
+author: "Vincent Gombe"
+date: "10 January 2018"
+output:
+  slidy_presentation: default
+  ioslides_presentation: default
+  beamer_presentation: default
+---
+
+
+## Introduction 
+
+- A very handy and easy to use calculator, supported with a powerful visual plot was designed to help with quick probality calculations of one of the most importatnt distributions in Statistics with a wide range of real life apllications.....The Poisson Distribution.
+
+- By following a few simple instructions one will be able to quickly compute poisson probabilities for a wide range of scenarios.
+
+## The Poisson Distribution
+
+- Arguably the second most important distribution after the Normal distribution.
+- A Poisson random variable is a discrete variable which can be described as a count of the number of occurrences of an event, where events occur randomly and independently at a constant rate(lambda). 
+- If these conditions are satisfied, then X, the number of events in a fixed unit interval (T), has a Poisson distribution.
+- The interval can be any measure, not necessarily time depending on the study in question and examples include:
+
+1.	Number of customers arriving at a checkout point in an hour (time)
+2.	Number of defects in a km of a pipeline (distance)
+3.	Number of patches in a square meter (area)
+- As an example:
+Suppose the mean number of calls to a fire station on a weekday is 8. 
+Then the constant rate lambda = 8 and the fixed unit interval T = 1 day and our X will be the number of calls. 
+Decision makers are usually interested in the probabilities of a certain number of events occurring within a certain interval. In our example above, one might ask:
+1.	What is the probability that on a given weekday there would be 11 calls?
+2.	What is the probability that on a given weekday there would be 11 or less calls?
+3.	What is the probability of getting 11 calls in half a day?
+
+## Answering the Questions
+
+- These questions can be answered by hand by substituting into the probability density function formula for the Poisson distribution 
+
+$$p(x|\lambda) = \frac{\lambda^xe^{-\lambda}}{x!}$$
+where x = 0,1,2,3,....
+
+- This can be fairly straight forward if one is only interested in the probability of exactly x occurances (11 in our example) in the specified unit interval. This can be computed in R as follows:
+
+```{r echo=TRUE}
+dpois(11,8)
+```
+
+- However, for the second question above for example, then one needs to sum up the probabilities of all the possible values of x 11 or less which would require repeating the above calculation 12 times!
+
+- Our equation becomes:
+
+$$p(0<= x <= 11|\lambda) =\sum_{x=0}^{11} \frac{\lambda^xe^{-\lambda}}{x!}$$
+
+
+- Yet in R it can be done quickly :
+
+```{r echo=TRUE}
+sum(dpois(0:11,8))
+```
+
+
+
+## The App
+
+- Very simple to use!
+- Just follow a set of simple instructions:
+
+  1. Enter lambda (the average number of occurances per given interval)
+  2. Enter the number of occurances the probability of which you would like to compute
+  3. Enter proprtion of interval you would like to investigate. For example if your lambda is x occurances per day and you want to investigate half a day, then enter 0.5. If you want to investigate 2 days, then enter 2. Note that this will adjust your lambda accordingly.
+  4. Submit...Probabilities are displayed on the caculator tab and the visualisation is dispalyed on the plot tab.
+  5. You can adjust your visualisation by by adjusting the number of points to plot to suit your investigation, and press submit.
+
+- With a little imagination a person with an undestanding of probabilities will be able to handle most variations including differnt ranges of occurences with minimal calculations.
+
+- Here is a link to the App: 
+```{r echo=TRUE}
+
+browseURL("https://gombevincent.shinyapps.io/poissondistribution/")
+```
+
+## Links to App and Codes
+
+- The app can be accessed via this url: https://gombevincent.shinyapps.io/poissondistribution
+
+- The server and UI codes are saved in this GitHub repo:
+
+https://github.com/vincentgombe/Developing-Data-Products-Project.git
