@@ -46,7 +46,7 @@ shinyUI(fluidPage(
       tabsetPanel(
         tabPanel("App Documentation",
                  
-                 h3("1. Enter lamdda (the average number of occurances per given interval)"),
+                 h3("1. Enter lambda (the average number of occurances per given interval)"),
 
   h3("2. Enter the number of occurances the probability of which you would like to compute"),
   
